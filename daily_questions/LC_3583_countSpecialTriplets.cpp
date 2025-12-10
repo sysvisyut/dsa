@@ -15,7 +15,7 @@ public:
         int ans =0;
         int n = nums.size();
         for(int i=0;i<n;i++){
-            next[nums[i]]++;           //initially store all the elements in the next array for reference
+            next[nums[i]]++;         //initially store all the elements in the next array for reference
         }
         for(auto &it: nums){
             next[it]--;             //when we reach the particular element remove it from the next map
