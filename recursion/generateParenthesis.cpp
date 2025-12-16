@@ -39,3 +39,32 @@ public:
         return temp;
     }
 };
+
+// optimized version TC: O(2^(2n))
+
+
+class Solution {
+public:
+    vector<string>temp;
+    void helper(string curr, int n, int open, int close){
+        
+        if(curr.size() == 2*n){
+            temp.push_back(curr);
+            return;
+        }
+        if(open < n){
+            curr.push_back('(');
+            helper(curr,n,open+1,close);
+            curr.pop_back();
+        }
+        if(close < open){
+            curr.push_back(')');
+            helper(curr,n,open,close+1);
+            curr.pop_back();
+        }
+    }
+    vector<string> generateParenthesis(int n) {
+        helper("",n,0,0);
+        return temp;
+    }
+};
