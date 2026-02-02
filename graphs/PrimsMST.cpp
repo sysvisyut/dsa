@@ -29,7 +29,6 @@ class Solution {
         vector<int> vis(V,0);
         //just the sum of the mst is asked so no need of parent.
         pq.push({0,0});
-        z
         while(!pq.empty()){
             auto it = pq.top();
             pq.pop();
