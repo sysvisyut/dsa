@@ -21,7 +21,7 @@ public:
             while(l < r){
                 int sum = nums[i]+nums[l]+nums[r];
 
-                if(sum ==0){
+                if(sum == 0){
                     ans.push_back({nums[i],nums[l],nums[r]});
                     l++;
                     r--;
