@@ -11,7 +11,8 @@ public:
     long long MOD = 1e9+7;
     long long power(long long base,long long exp){
         if(exp == 0) return 1;
-        long long half = power(base,exp/2);     //3^6 = 3^3 * 3^3
+        long long half = power(base,exp/2);     
+        //3^6 = 3^3 * 3^3
         half = (half*half)%MOD;
 
         if(exp%2 == 0) return half;     
