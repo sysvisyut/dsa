@@ -42,6 +42,21 @@ class DisJointSet{
                 rank[ultParent_u]++;
             }
         }
+        void unionSize(int u, int v) {
+        int pu = findUparent(u);
+        int pv = findUparent(v);
+
+        if(pu == pv) return;
+
+        if(size[pu] < size[pv]) {
+            parent[pu] = pv;
+            size[pv] += size[pu];
+        }
+        else {
+            parent[pv] = pu;
+            size[pu] += size[pv];
+        }
+    }
 };
 
 int main(){
