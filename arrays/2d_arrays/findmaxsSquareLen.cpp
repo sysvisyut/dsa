@@ -33,6 +33,7 @@ public:
                 ((i>0 && j>0) ? prefix[i-1][j-1] : 0)+mat[i][j]; // prefix matrix creation
             }
         }
+        
         int best_sq = 0;
         int curr = 0;
         for(int i=0;i<r;i++){
