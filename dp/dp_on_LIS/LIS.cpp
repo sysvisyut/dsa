@@ -28,3 +28,29 @@ public:
         return maxi;
     }
 };
+
+// most optimal solution using lower_bound , time complexity = O(nlogn)
+
+
+int lengthOfLIS(vector<int>& nums) {
+        
+        vector<int> bs;
+
+        for(int i=0;i<nums.size();i++){
+            auto it = lower_bound(bs.begin(),bs.end(),nums[i]);
+
+            if(it == bs.end()){ // element greater than everything, so the seq len should increase 
+                bs.push_back(nums[i]);
+            }
+
+            else{ // there exist a el whose place can be occupied by nums[i], so that we have the possibility to get a better seq
+
+                *it = nums[i];
+
+            }
+
+        }
+
+        return bs.size();
+}
+
