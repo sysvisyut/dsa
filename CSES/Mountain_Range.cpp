@@ -10,7 +10,7 @@
 #include <stack>
 #include <deque>
 #include <string>
-#include <limits>
+#include <climits>
 #include <numeric>
 #include <iomanip>
 
@@ -19,32 +19,84 @@ using namespace std;
 typedef long long ll;
 #define fastio ios::sync_with_stdio(false); cin.tie(NULL);
 
+
 void solve() {
     int n;
     cin>>n;
 
-    vector<int> nums(n);
+    vector<pair<int,int>> nums;
 
     for(int i=0;i<n;i++){
-        cin>>nums[i];
+        int h;
+        cin>>h;
+
+        nums.push_back({h,i});
     }
 
-    reverse(nums.begin(),nums.end());
-
-    vector<int> lis;
-
-    for(int i=0;i<n;i++){
-        auto it = lower_bound(lis.begin(), lis.end(), nums[i]);
-
-        if(it == lis.end()){
-            lis.push_back(nums[i]);
+    
+    vector<int> nge(n), pge(n);
+    
+    stack<int> st;
+    
+    for(int i= n-1;i >=0;i--){
+        while(!st.empty() && nums[st.top()].first <= nums[i].first){
+            st.pop();
+        }
+        if(st.empty()){
+            nge[i] = -1;
         }
         else{
-            *it = nums[i];
+            nge[i] = st.top();
+        }
+        st.push(i);
+    }
+    
+    while(!st.empty()) st.pop();
+    
+    for(int i=0;i < n;i++){
+        while(!st.empty() && nums[st.top()].first <= nums[i].first){
+            st.pop();
+        }
+        if(st.empty()){
+            pge[i] = -1;
+        }
+        else{
+            pge[i] = st.top();
+        }
+        st.push(i);
+    }
+    
+    sort(nums.rbegin(), nums.rend());
+    vector<int> dp(n+1,0);
+
+    for(int i=0;i<n;i++){
+
+        int idx = nums[i].second;
+
+        dp[idx] = 1;
+
+        if(nge[idx]!= -1){
+            dp[idx] = max(dp[idx], 1+dp[nge[idx]]);
+        }
+        if(pge[idx] != -1){
+            dp[idx] = max(dp[idx], 1+dp[pge[idx]]);
         }
     }
 
-    cout<<lis.size();
+
+    int ans = INT_MIN;
+
+    for(int i=0;i<n;i++){
+        ans = max(ans,dp[i]);
+    }
+
+
+    cout<<ans<<endl;
+    
+
+
+
+   
 }
 
 int main() {
