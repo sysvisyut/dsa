@@ -7,7 +7,7 @@
 using namespace std;
 /*start traversing from the back of the array and store the elements into the stack if the 
 stack is empty that means either its the last element or the curr element doesnt have any nge
- to its right, so store -1, else pop the stack will the top of the stack becomes greater than 
+ to its right, so store -1, else pop the stack till the top of the stack becomes greater than 
  the current element and store it*/
 class Solution {
 public:
