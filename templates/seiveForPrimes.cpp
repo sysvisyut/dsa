@@ -17,8 +17,8 @@ class Solution {
         
         for(int i=2;i*i <= n;i++){ // start from 2 and go till sqrt(n) to find all factor pairs
             if(p[i]){
-                for(int j=2;i*j <= n; j++){ //mark the multiples of prime as false
-                    p[i*j] = 0;
+                for(int j=i*i;j<= n; j+=i){ //mark the multiples of prime as false
+                    p[j] = 0;
                 }
             }
         }
