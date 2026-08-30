@@ -6,26 +6,31 @@
 
 using namespace std;
 
-long long power(long long base, long long exp) {
-    // 1. Base Case: Anything to the power of 0 is 1.
-    int MOD = 1e9+7;
-    if(exp == 0) return 1;
+const int mod = 1e9+7;
 
-    // 2. Recursive Step: Find the result for HALF of the exponent.
-    // If exp is 10, this finds base^5.
-    long long half = power(base, exp/2);
+long long f(long long base,long long exp){
+    long long ans = 1;
+    base%=mod;
 
-    // 3. Square it: (base^(exp/2)) * (base^(exp/2))
-    // We apply % MOD here to keep the number from becoming too huge.
-    half = (half * half) % MOD;
-
-    // 4. Handle Odd Exponents:
-    if(exp % 2 == 0) {
-        // If even (e.g., 10), we already have the full answer in 'half'.
-        return half;
-    } else {
-        // If odd (e.g., 11), the integer division 'exp/2' dropped a 'base'.
-        // We multiply it back in here.
-        return (base * half) % MOD;
+    while(exp > 0){
+        if(exp&1){
+            ans = (ans*base)%mod;
+        }
+        base = (base*base)%mod;
+        exp>>=1;
     }
+
+    return ans;
+
+}
+int main() {
+    
+    long long x,y;
+    cin>>x>>y;
+
+    long long res = f(x,y);
+
+    cout<<res;
+
+    return 0;
 }
