@@ -16,14 +16,14 @@ class Solution {
         while(low <= high){
             int mid = (low+high)/2;
             if(arr[low] <= arr[mid]){
-                if(ans > arr[low]){    
+                if(arr[low] < ans){    
                     ans = arr[low];
                     ans_ind = low;
                 }
                 low = mid+1;
             }
             else{
-                if(ans > arr[mid]){
+                if(arr[mid] < ans){
                     ans = arr[mid];
                     ans_ind = mid;
                 }
