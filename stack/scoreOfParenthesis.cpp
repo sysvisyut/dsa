@@ -1,3 +1,11 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <unordered_set>
+#include <unordered_map>
+#include <stack>
+using namespace std;
+
 class Solution {
 public:
     int scoreOfParentheses(string s) {
